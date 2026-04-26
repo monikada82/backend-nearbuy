@@ -1,0 +1,152 @@
+{
+  "info": {
+    "name": "NearBuy Full Backend APIs",
+    "_postman_id": "nearbuy-full",
+    "description": "Complete E-commerce Backend APIs with Cart, Order, Address, Payment",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    }
+  ],
+  "item": [
+
+    {
+      "name": "Product APIs",
+      "item": [
+        {
+          "name": "Add Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"iPhone\",\n  \"description\": \"Apple phone\",\n  \"price\": 80000,\n  \"stock\": 10,\n  \"categoryId\": 1\n}"
+            },
+            "url": "{{baseUrl}}/products"
+          }
+        },
+        {
+          "name": "Get Products (Search + Filter + Sort)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/products?keyword=iphone&min=1000&max=100000&page=0&size=5&sort=price,desc"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Cart APIs",
+      "item": [
+        {
+          "name": "Add to Cart",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": 1,\n  \"quantity\": 2\n}"
+            },
+            "url": "{{baseUrl}}/cart/1"
+          }
+        },
+        {
+          "name": "View Cart",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/cart/1"
+          }
+        },
+        {
+          "name": "Remove from Cart",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/cart/1/1"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Address APIs",
+      "item": [
+        {
+          "name": "Add Address",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"street\": \"MG Road\",\n  \"city\": \"Bangalore\",\n  \"state\": \"Karnataka\",\n  \"zipCode\": \"560001\",\n  \"country\": \"India\"\n}"
+            },
+            "url": "{{baseUrl}}/address/1"
+          }
+        },
+        {
+          "name": "Get Addresses",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/address/1"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Order APIs",
+      "item": [
+        {
+          "name": "Checkout",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"addressId\": 1\n}"
+            },
+            "url": "{{baseUrl}}/orders/checkout/1"
+          }
+        },
+        {
+          "name": "Get Orders",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/orders/1"
+          }
+        },
+        {
+          "name": "Update Order Status",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/orders/1/status?status=SHIPPED"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Payment APIs",
+      "item": [
+        {
+          "name": "Make Payment",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/payments/1"
+          }
+        }
+      ]
+    }
+
+  ]
+}
